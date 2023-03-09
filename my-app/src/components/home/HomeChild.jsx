@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import { useNavData, useSideData } from "@src/hooks/data.js";
+import { arr, useSideData } from "@src/hooks/data.js";
 import HomeChildAvatar from "./HomeChildAvatar.jsx";
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"
@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 
 const { Header, Content, Sider } = Layout;
 export default function HomeChild() {
-  let caseMenu = useNavData();
   let sideMenu = useSideData();
   const navigate = useNavigate();
   const hanlerSelect = ({ key }) => { navigate(key) }
@@ -18,7 +17,7 @@ export default function HomeChild() {
       <Header className="header">
         <div className="logo" />
         <HomeChildAvatar></HomeChildAvatar>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0-1']} items={caseMenu} onClick={hanlerSelect} />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['0-1']} items={arr} onClick={hanlerSelect} />
       </Header>
       {/* 侧边 */}
       <div className='layout-info'>
@@ -30,7 +29,7 @@ export default function HomeChild() {
           />
         </Sider>
         {/* 主体内容 */}
-        <div style={{ width: "100%" }}>
+        <div className='wrap'>
           <Content style={{ padding: 15, margin: 0, minHeight: 280, background: "#fff" }} >
             <Outlet />
           </Content>

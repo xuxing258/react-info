@@ -23,7 +23,7 @@ export default function Manage({ roteInfo }) {
   const onClose = () => { setOpen(false); form.resetFields();; };
   const onSearch = async (value) => {
     let data = await searchUser({ value })
-    if (data.code == 3) {
+    if (data.code === 3) {
       setData(data.data || [])
       setLen(data.len || 0)
       setCurrent(1)
@@ -49,7 +49,6 @@ export default function Manage({ roteInfo }) {
   // 获取角色数据
   useEffect(() => {
     getManageInfo().then((data) => {
-      console.log(data.data);
       setData(data.data);
       setLen(data.len)
     })

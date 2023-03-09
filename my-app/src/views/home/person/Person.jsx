@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import { useLocation } from "react-router-dom"
-import { Breadcrumb, Card, Button, Form, Input, Upload } from 'antd';
+import { manageRegExp } from "@src/hooks/data.js"
+import { Card, Button, Form, Input, Upload } from 'antd';
 import { chagnePerson } from "@src/required/index.js"
 import { useDispatch, useSelector } from 'react-redux';
-import { PlusOutlined } from '@ant-design/icons';
 
 export default function Person() {
-  let { state } = useLocation();
   let userInfo = useSelector(state => state.useUserInfo.userInfo)
   const dispatch = useDispatch()
   const [form] = Form.useForm();
@@ -37,44 +35,39 @@ export default function Person() {
   };
   return (
     <div className='person'>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>{state?.root}</Breadcrumb.Item>
-        <Breadcrumb.Item>{state?.two}</Breadcrumb.Item>
-      </Breadcrumb>
-      <Card title="个人设置" bordered={false} headStyle={{ backgroundColor: "#eee" }}>
-        <Form layout="vertical" form={form} style={{ maxWidth: 600, }} size="small" initialValues={userInfo} onFinish={finish} >
-          <Form.Item label="用户名">
+
+      <Card title="个人设置" bordered={false} >
+        <Form form={form} style={{ maxWidth: 600, }} initialValues={userInfo} onFinish={finish} autoComplete="off" >
+          <Form.Item label="用户名" extra={<p style={{ fontSize: "12px", color: "#aaa" }}>不可修改</p>}>
             {userInfo?.loginName}
-            <p style={{ fontSize: "12px", color: "#eee" }}>不可修改</p>
           </Form.Item>
-          <Form.Item label="昵称" name="logonNick">
+          <Form.Item label="昵称" name="logonNick" rules={manageRegExp.logonNick}>
             <Input placeholder="可以是中文" />
           </Form.Item>
-          <Form.Item label="邮箱" name="loginEmail">
+          <Form.Item label="邮箱" name="loginEmail" rules={manageRegExp.loginEmail}>
             <Input placeholder="修改邮箱" />
           </Form.Item>
-          <Form.Item label="密码" name="loginPass" >
-            <Input placeholder="必填,6-20位" type='password' />
+          <Form.Item label="密码" name="loginPass" rules={manageRegExp.loginPass}>
+            <Input.Password placeholder="必填,6-20位" type='password' />
           </Form.Item>
-          <Form.Item label="手机号码" name="loginPhone">
+          <Form.Item label="手机号码" name="loginPhone" rules={manageRegExp.loginPhone}>
             <Input />
           </Form.Item>
           <Form.Item label="头像">
-            <div>
-              {userInfo?.LoginImg ? (<img src={"/api" + userInfo?.LoginImg} alt="avatar" style={{ width: '50px', height: "50px" }} />) : ""}
+            <div className='img upload'>
+              <Upload
+                name="file"
+                data={{ id: userInfo?._id }}
+                maxCount={1}
+                listType="picture-card"
+                className="avatar-uploader"
+                showUploadList={false}
+                action="/api/root/avatar"
+                onChange={handleChange}
+              >
+                {userInfo?.LoginImg ? (<img src={"/api" + userInfo?.LoginImg} alt="avatar" style={{ width: '90px', height: "90px" }} />) : ""}
+              </Upload>
             </div>
-            <Upload
-              name="file"
-              data={{ id: userInfo?._id }}
-              maxCount={1}
-              listType="picture-circle"
-              className="avatar-uploader"
-              showUploadList={false}
-              action="/api/root/avatar"
-              onChange={handleChange}
-            >
-              <PlusOutlined ></PlusOutlined >
-            </Upload>
           </Form.Item>
           <Form.Item >
             <Button type="primary" htmlType="submit">提交</Button>

@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     noLogin().then((data) => {
       if (data.code === 3) return dispatch({ "type": "useUserInfo/changeInfo", val: data.data });
-      if (data.code === 0) return navigate("/");
+      if (data.code === 4) return navigate("/");
     })
     // eslint-disable-next-line
   }, []);

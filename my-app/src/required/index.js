@@ -35,3 +35,8 @@ export const removeUser = (value) => createAxios("post", url + "root/delete", va
 
 
 
+// addMammder组件设置web用户账号
+export const addMamber = (value) => createAxios("post", url + "web/add", value);
+
+// MemberList获取会员信息
+export const getMamber = () => createAxios("get", url + "web/info");

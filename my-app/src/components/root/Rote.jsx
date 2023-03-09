@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react';
-import { Form, Input, Tree, Button, Drawer, Table, Tag } from 'antd';
+import { Form, Input, Tree, Button, Drawer, Table, Tag, Select } from 'antd';
 import { arr } from "@src/hooks/data.js"
 import { createRote, getRoteInfo, rmoveRoteInfo } from "@src/required/index.js"
-
+const { Option } = Select
 // 设置表头
 let dataInfo = [
-  {
-    title: "Id",
-    dataIndex: 'roleGrade',
-    key: 'Id',
-    width: 80,
-    sorter: (a, b) => a.roleGrade - b.roleGrade
-  },
   {
     title: '角色',
     dataIndex: 'roleName',
     key: 'age',
-    width: 200,
+    width: 120,
+  },
+  {
+    title: '权限',
+    dataIndex: 'roleGrade',
+    key: 'roleGrade',
+    width: 100,
   },
   {
     title: '创建时间',
@@ -38,7 +37,7 @@ export default function Rote({ setRoteInfo }) {
   const [treeKeyArr, setTreeKeyArr] = useState([]);
   const [accountArr, setAccountArr] = useState([]);
   const [showtable, setShowTable] = useState([])
-  const [tableObj] = useState({ roteName: "", info: "", grade: "" })
+  const [tableObj] = useState({ roteName: "", info: "", grade: "一" })
   const [id, setID] = useState({ id: "", index: "" })
 
   // 隐藏显示
@@ -99,8 +98,12 @@ export default function Rote({ setRoteInfo }) {
           <Form.Item label="角色描述" name="info" rules={[{ required: true, message: '描述角色工作' }]}>
             <Input placeholder='请输入角色描述' />
           </Form.Item>
-          <Form.Item label="角色等级" name="grade" rules={[{ required: true, message: '描述角色工作' }]} >
-            <Input placeholder='请输入角色等级' />
+          <Form.Item label="角色等级或代理用户" name="grade" rules={[{ required: true, message: '描述角色工作' }]} >
+            <Select>
+              <Option value={1}>一级权限</Option>
+              <Option value={2}>二级权限</Option>
+              <Option value={3}>用户代理权限</Option>
+            </Select>
           </Form.Item>
           <Form.Item label="角色权限" >
             {/*  checkStrictly={true} */}

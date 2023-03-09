@@ -3,7 +3,6 @@ const mongoRole = require("../../mongoose/react/mongoRole")
 const { createToken, verifyToken } = require("../plugin/token.js")
 const multer = require('multer')
 const upload = require("../plugin/multer.js")
-const path = require("path")
 const fs = require("fs")
 const sd = require('silly-datetime');
 
@@ -89,7 +88,7 @@ exports.setRote = async (req, res) => {
   if (roteBol) return res.send({ value: "角色名称存在", code: 0, data: "" });
   let data = await mongoRole.create({
     roleName: values.roteName,
-    roleTime: Date.now(),
+    roleTime: sd.format(new Date(), 'YYYY-MM-DD HH:mm'),
     roleInfo: values.info,
     roleGrade: values.grade,
     roleKeyArr: treeKeyArr,
@@ -146,7 +145,7 @@ exports.changePerson = async (req, res) => {
 
 // 设置免登录 token
 exports.noLogin = async (req, res) => {
-  if (!req.headers['authorization']) return res.send({ value: "账户信息失效", code: 0, data: "" });
+  if (!req.headers['authorization']) return res.send({ value: "账户信息失效", code: 4, data: "" });
   let bearer = req.headers['authorization'].split(" ")[1];
   let data = await verifyToken(bearer)
   res.send({ value: "", code: 3, data: data.value })
@@ -159,7 +158,17 @@ exports.requireLogin = async (req, res) => {
   if (!bol) return res.send({ value: "账号不存在", code: 0, data: {} });
   if (bol.loginPass != password) return res.send({ value: "密码错误", code: 0, data: {} });
   let tokens = await mongoLogin.findOne({ loginName: username });
-  let token = createToken({ name: "token", value: tokens })
+  let token = createToken({ name: "token", value: tokens });
+
+  // let data = await mongoLogin.create({
+  //   loginName: "root",  // 用户名
+  //   loginPass: "123123",  // 用户密码
+  //   loginTime: sd.format(new Date(), 'YYYY-MM-DD HH:mm'),   // 用户创建时间
+  //   logonNick: "root",
+  //   loginEmail: "1163034081@qq.com",
+  //   // loginRote: "管理员",
+  //   loginPhone: "15116406518"
+  // })
 
   res.send({ value: "登录成功", code: 3, data: bol, token: token });
 

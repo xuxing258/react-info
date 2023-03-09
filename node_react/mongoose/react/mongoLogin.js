@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 let schema = new mongoose.Schema({
-	loginName: String,  // 用户名
-	loginPass: String,  // 用户密码
-	loginTime: String,   // 用户创建时间
-	loginRote: {
+	loginName: String,  // 管理员名
+	loginPass: String,  // 管理员密码
+	loginTime: String,   // 管理员创建时间
+	loginRote: {				// 管理员身份
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "mongoRole"
 	},
-	logonNick: String,
+	logonNick: String,   // 管理员描述
 	loginEmail: String,
 	loginPhone: String,
 	LoginImg: {

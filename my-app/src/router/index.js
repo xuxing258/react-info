@@ -1,5 +1,5 @@
-import { createBrowserRouter, useNavigate } from "react-router-dom";
-import React, { useEffect, Suspense } from "react";
+import { createBrowserRouter } from "react-router-dom";
+import React, { Suspense } from "react";
 //  引入组件
 import Login from "@src/views/login/Login.jsx"
 const Home = React.lazy(() => import("../views/home/Home.jsx"))

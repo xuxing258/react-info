@@ -28,6 +28,7 @@ function handlerAxios(type, URL, DATA, res, rej) {
     data: type === "POST" ? DATA : {},
     params: type === "GET" ? DATA : {},
   }).then(({ data }) => {
+    // eslint-disable-next-line 
     switch (data.code) {
       case 0:
         message.error({
