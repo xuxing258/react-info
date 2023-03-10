@@ -8,7 +8,7 @@ let schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "mongoRole"
 	},
-	logonNick: String,   // 管理员描述
+	logonNick: String,   // 管理员昵称
 	loginEmail: String,
 	loginPhone: String,
 	LoginImg: {

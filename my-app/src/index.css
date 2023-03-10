@@ -67,6 +67,9 @@ code {
 }
 
 
+.cur{
+	cursor: pointer;
+}
 
 .ant-table-body::-webkit-scrollbar {
     width: 4px;

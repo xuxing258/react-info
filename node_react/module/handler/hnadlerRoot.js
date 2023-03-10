@@ -16,7 +16,8 @@ exports.removeUser = async (req, res) => {
 // 搜索获取数据
 exports.getSearch = async (req, res) => {
   let { value } = req.body
-  let data = await mongoLogin.find({ loginName: { $regex: value } }, {}).populate("loginRote");
+  // let data = await mongoLogin.find({ loginName: { $regex: value } }, {}).populate("loginRote");
+  let data = await mongoLogin.find({ $or: [{ loginName: { $regex: value } }, { logonNick: { $regex: value } }] }, {}).populate("loginRote");
   let len = data.length
   res.send({ value: "获取成功", code: 3, data: data, len })
 }
@@ -53,7 +54,8 @@ exports.setManage = async (req, res) => {
     loginRote: loginRote,
     loginPhone: loginPhone
   })
-  res.send({ value: "添加成功", code: 3, data: data })
+  let datas = await mongoLogin.findById(data._id).populate("loginRote");
+  res.send({ value: "添加成功", code: 3, data: datas })
 }
 
 // 删除角色信息
@@ -159,7 +161,6 @@ exports.requireLogin = async (req, res) => {
   if (bol.loginPass != password) return res.send({ value: "密码错误", code: 0, data: {} });
   let tokens = await mongoLogin.findOne({ loginName: username });
   let token = createToken({ name: "token", value: tokens });
-
   // let data = await mongoLogin.create({
   //   loginName: "root",  // 用户名
   //   loginPass: "123123",  // 用户密码

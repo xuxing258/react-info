@@ -18,17 +18,25 @@ export default function Manage({ roteInfo }) {
   const [form] = Form.useForm();
   const [dataArr, setData] = useState([]);
   const [current, setCurrent] = useState(1);
-  let [len, setLen] = useState(0)
+  let [len, setLen] = useState(0);
+  let [searchBol, setSeaRch] = useState(true);
+
   const showDrawer = () => { setOpen(true) };
-  const onClose = () => { setOpen(false); form.resetFields();; };
+  const onClose = () => { setOpen(false); form.resetFields() };
+
+  // 搜索
   const onSearch = async (value) => {
+    if (!value) return;
     let data = await searchUser({ value })
     if (data.code === 3) {
       setData(data.data || [])
       setLen(data.len || 0)
-      setCurrent(1)
+      setCurrent(1);
+
+      setSeaRch(false)
     }
   };
+
   // 表单提交 添加用户
   const onFinish = async (values) => {
     let data = await setManageInfo(values);
@@ -41,6 +49,10 @@ export default function Manage({ roteInfo }) {
   };
   // 分页获取数据
   const pageChange = async (val) => {
+    if (!searchBol) {
+      setCurrent(val)
+      return
+    }
     let data = await getPageUser({ key: val });
     setCurrent(val)
     setData(data.data);
@@ -48,17 +60,23 @@ export default function Manage({ roteInfo }) {
 
   // 获取角色数据
   useEffect(() => {
+    init()
+    // eslint-disable-next-line
+  }, []);
+
+  const init = () => {
     getManageInfo().then((data) => {
       setData(data.data);
       setLen(data.len)
-    })
-    // eslint-disable-next-line
-  }, []);
+    });
+    setSeaRch(true)
+  }
   return (
     <>
-      <Space size={20} style={{ marginBottom: "15px" }}>
+      <Space size={10} style={{ marginBottom: "15px" }}>
         <Button type="primary" onClick={showDrawer}>添加用户</Button>
-        <Search placeholder="用户名/昵称搜索" onSearch={onSearch} style={{ width: 200 }} />
+        <Button className='right_name' onClick={init}>默认显示</Button>
+        <Search placeholder="用户名/昵称搜索" onSearch={onSearch} style={{ width: 400 }} />
       </Space>
       <Drawer title="添加用户" placement="right" onClose={onClose} open={open}>
         <Form

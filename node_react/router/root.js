@@ -16,6 +16,15 @@ const {
 } = require("../module/handler/hnadlerRoot.js")
 
 
+router.all("*",(req,res,next)=>{
+	if(req.path === "/login"){
+		next();
+		return
+	} 
+	if(!req.headers['authorization']) return res.send({code:5,data:"",value:""});
+	next()
+})
+
 //账号登录
 router.post("/login", requireLogin)
 

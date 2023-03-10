@@ -40,3 +40,11 @@ export const addMamber = (value) => createAxios("post", url + "web/add", value);
 
 // MemberList获取会员信息
 export const getMamber = () => createAxios("get", url + "web/info");
+// MemberList获取会员信息
+export const removeMamber = (value) => createAxios("post", url + "web/delete",value);
+// MemberList会员使用状态
+export const statusMamber = (value) => createAxios("post", url + "web/status",value);
+// MemberList获取分页会员数据
+export const getPangMamber = (value) => createAxios("post", url + "web/pages",value);
+// MemberList搜索获取数据
+export const getSearch = (value) => createAxios("post", url + "web/search",value);

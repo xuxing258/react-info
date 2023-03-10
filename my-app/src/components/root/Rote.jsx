@@ -58,9 +58,13 @@ export default function Rote({ setRoteInfo }) {
     if (data.code === 4) {
       showtable.splice(id.index, 1, data.data)
       setShowTable([...showtable]);
+      setRoteInfo([...showtable])
+      // 修改角色数据
     }
     if (data.code === 3) {
       setShowTable([data.data, ...showtable]);
+      // 添加角色
+      setRoteInfo([data.data, ...showtable])
     }
     // 清空tree树结构
     setTreeKeyArr([])
