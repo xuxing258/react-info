@@ -18,7 +18,7 @@ export const arr = [
   { label: "会员", title: "会员", iocn: "", key: "/home/member", },
   { label: "资金", title: "资金", iocn: "", key: "0-4", },
   { label: "统计", title: "统计", iocn: "", key: "0-5", },
-  { label: "用户代理", title: "用户代理", iocn: "", key: "0-6", },
+  { label: "用户代理", title: "用户代理", iocn: "", key: "/home/proxy", },
 ]
 
 // 侧边数据

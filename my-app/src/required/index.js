@@ -40,11 +40,24 @@ export const addMamber = (value) => createAxios("post", url + "web/add", value);
 
 // MemberList获取会员信息
 export const getMamber = () => createAxios("get", url + "web/info");
-// MemberList获取会员信息
-export const removeMamber = (value) => createAxios("post", url + "web/delete",value);
+// MemberLists删除会员信息
+export const removeMamber = (value) => createAxios("post", url + "web/delete", value);
 // MemberList会员使用状态
-export const statusMamber = (value) => createAxios("post", url + "web/status",value);
+export const statusMamber = (value) => createAxios("post", url + "web/status", value);
 // MemberList获取分页会员数据
-export const getPangMamber = (value) => createAxios("post", url + "web/pages",value);
+export const getPangMamber = (value) => createAxios("post", url + "web/pages", value);
 // MemberList搜索获取数据
-export const getSearch = (value) => createAxios("post", url + "web/search",value);
+export const getSearch = (value) => createAxios("post", url + "web/search", value);
+// MemberList改变代理状态数据
+export const proxyMamber = (value) => createAxios("post", url + "web/proxy", value);
+// MemberList下载表格数据
+export const getTabel = () => createAxios("get", url + "web/install");
+
+// memberChange组件修改会员数据
+export const changeMamberInfo = (value) => createAxios("post", url + "web/change", value);
+
+// Proxy组件获取 代理信息
+export const getProxyInfo = () => createAxios("get", url + "web/data");
+// Proxy组件获取 搜索代理账号
+export const getSearchProxy = (value) => createAxios("post", url + "web/find", value);
+

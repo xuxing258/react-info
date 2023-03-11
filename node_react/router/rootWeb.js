@@ -6,13 +6,18 @@ const {
   deleteInfo,
   setStatus,
   getPages,
-  getsearch
+  getsearch,
+  proxyMember,
+  changeMamberInfo,
+  getInstall,
+  getData,
+  findProxy
 } = require("../module/handler/hnadlerRootWeb.js")
 
 
-router.all("*",(req,res,next)=>{
-	if(!req.headers['authorization']) return res.send({code:5,data:"",value:""});
-	next()
+router.all("*", (req, res, next) => {
+  if (!req.headers['authorization']) return res.send({ code: 5, data: "", value: "" });
+  next()
 })
 
 
@@ -27,14 +32,28 @@ router.get("/info", getInfo)
 router.post("/delete", deleteInfo)
 
 // 账号状态
-router.post("/status",setStatus)
+router.post("/status", setStatus)
 
 // 账号分页
-router.post("/pages",getPages)
+router.post("/pages", getPages)
 
 // 搜索账号
-router.post("/search",getsearch)
+router.post("/search", getsearch)
 
+// 修改代理状态
+router.post("/proxy", proxyMember)
+
+// 修改代理状态
+router.post("/change", changeMamberInfo)
+
+// 下载账号数据
+router.get("/install", getInstall)
+
+// 搜索代理信息
+router.get("/data", getData)
+
+// 获取代理账号数据
+router.post("/find", findProxy)
 
 module.exports = router
 

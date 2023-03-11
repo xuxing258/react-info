@@ -5,20 +5,20 @@ import { useState } from 'react';
 
 
 export default function Member() {
-  const [memberData,setMember] = useState()
+  const [memberData, setMember] = useState()
   return (
     <>
       <Card title="会员管理" bordered={false} style={{ width: '100%' }}>
         <Tabs defaultActiveKey="1" items={[
           {
             key: '1',
-            label: "会员列表",
-            children: <MemberList memberData={memberData}></MemberList>,
+            label: `添加会员`,
+            children: <AddMember setMember={setMember}></AddMember>,
           },
           {
             key: '2',
-            label: `添加会员`,
-            children: <AddMember setMember={setMember}></AddMember>,
+            label: "会员列表",
+            children: <MemberList memberData={memberData}></MemberList>,
           },
           {
             key: '3',

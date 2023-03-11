@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 export const useUserInfo = createSlice({
   name: "useUserInfo",
   initialState: {
@@ -12,8 +11,6 @@ export const useUserInfo = createSlice({
     },
   }
 })
-
-
 
 export const { changeInfo } = useUserInfo.actions;
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Table, Switch, Tag, Input, Space, Select, Button } from 'antd';
-import { getMamber, removeMamber, statusMamber, getPangMamber, getSearch } from "@src/required/index.js"
+import { getMamber, removeMamber, statusMamber, getPangMamber, getSearch, proxyMamber, getTabel } from "@src/required/index.js"
 import { Link } from "react-router-dom"
+
 
 const { Search } = Input;
 const { Option } = Select
@@ -41,7 +42,7 @@ const columns = [
   },
   {
     title: '来源',
-    dataIndex: 'address',
+    dataIndex: ["webCreate", "loginName"],
     key: '5',
     width: 150
   },
@@ -60,6 +61,7 @@ export default function MemberList({ memberData }) {
   let [select, setSelect] = useState(1)
   let [searchBol, setSeaRch] = useState(true)
   const [current, setCurrent] = useState(1);
+
 
   // 获取初始数据
   useEffect(() => {
@@ -85,7 +87,10 @@ export default function MemberList({ memberData }) {
   const changeSwitch = (val, checked) => {
     statusMamber({ id: val._id, bol: checked })
   }
-
+  // 代理
+  const changeProxy = (val, webProxyBol) => {
+    proxyMamber({ id: val._id, bol: webProxyBol })
+  }
   // 分页获取数据
   const pageChange = async (val) => {
     if (!searchBol) {
@@ -108,6 +113,13 @@ export default function MemberList({ memberData }) {
       setSeaRch(false)
     }
   }
+  // 导出数据表格
+  const handlerExcel = async () => {
+    let data = await getTabel();
+    let a = document.createElement("a")
+    a.href = "/api" + data.data
+    a.click()  //自动执行
+  }
   return (
     <div >
       <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
@@ -126,26 +138,31 @@ export default function MemberList({ memberData }) {
           />
           &nbsp;
           <Button className='right_name' onClick={init}>默认显示</Button>
+          <span className='right_name' style={{ width: "10px", height: "10px" }} > </span>
+          <Button className='right_name' onClick={handlerExcel}>导出Excel表格</Button>
         </div>
         <Table
           columns={[
             ...columns,
             {
-              title: '账号状态', dataIndex: 'address', key: '5', width: 80,
+              title: '账号状态', dataIndex: 'address1', key: '5', width: 80,
               render(_, val) { return (<Switch onChange={changeSwitch.bind(null, val)} checkedChildren="正常" unCheckedChildren="禁用" defaultChecked={val.webStatusBol} />) }
             },
             {
+              title: '代理', dataIndex: 'address3', key: '5', width: 80,
+              render(_, val) { return (<Switch onChange={changeProxy.bind(null, val)} checkedChildren="是" unCheckedChildren="否" defaultChecked={val.webProxyBol} />) }
+            },
+            {
               title: '操作',
-              dataIndex: 'address',
+              dataIndex: 'address2',
               key: '7',
-              width: 200,
+              width: 120,
               fixed: 'right',
               render(_, val, index) {
                 return (
                   <p className='cur'>
                     <Tag onClick={handlerDelete.bind(null, val, index)}>删除</Tag>
-                    <Tag>  <Link to="/home/memchange">编辑</Link> </Tag>
-                    <Tag>重置支付密码</Tag>
+                    <Tag>  <Link to="/home/memchange" state={{ val }}>编辑</Link> </Tag>
                   </p>
                 )
               }

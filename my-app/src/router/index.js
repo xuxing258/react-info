@@ -8,6 +8,7 @@ const Child = React.lazy(() => import("../views/home/child/Child.jsx"))
 const Root = React.lazy(() => import("../views/home/root/Root.jsx"))
 const Member = React.lazy(() => import("../views/home/member/Member.jsx"))
 const MemberChange = React.lazy(() => import("../views/home/member/MemberChange.jsx"))
+const Proxy = React.lazy(() => import("../views/home/proxy/Proxy.jsx"))
 
 
 // 创建路由表
@@ -40,7 +41,11 @@ const router = createBrowserRouter([
         path: "memchange",
         element: <Suspense> <MemberChange /></Suspense>,
       },
-      
+      {
+        path: "proxy",
+        element: <Suspense> <Proxy /></Suspense>,
+      },
+
 
     ]
   },

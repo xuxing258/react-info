@@ -16,6 +16,11 @@ let schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "mongoLogin"
   },
+  webInfo: String, // 用户备注
+  webCode: String, // 用户绑定码
+  webInfo: String, // 用户备注
+  webProxyName: String, // 代理商
+  payPass: String, // 支付密码
 }, {
   versionKey: false
 })
