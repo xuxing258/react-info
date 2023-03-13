@@ -16,10 +16,26 @@ export const arr = [
   { label: "首页", title: "首页", iocn: "", key: "/home/child" },
   { label: "后台管理员", title: "后台管理员", iocn: "", key: "/home/root", },
   { label: "会员", title: "会员", iocn: "", key: "/home/member", },
-  { label: "资金", title: "资金", iocn: "", key: "0-4", },
+  { label: "资金", title: "资金", iocn: "", key: "/home/fund/child", },
   { label: "统计", title: "统计", iocn: "", key: "0-5", },
-  { label: "用户代理", title: "用户代理", iocn: "", key: "/home/proxy", },
+  { label: "用户代理", title: "用户代理", iocn: "", key: "/home/proxy/child", },
 ]
+
+// 代理侧边数据
+export const useProxtSideData = [
+  { label: "代理商列表", title: "代理商列表", iocn: "", key: "/home/proxy/child" },
+  { label: "提现记录", title: "提现记录", iocn: "", key: "/home/proxy/cash" },
+  { label: "邀请记录", title: "邀请记录", iocn: "", key: "/home/proxy/invite", },
+  { label: "佣金分成", title: "佣金分成", iocn: "", key: "/home/proxy/commission", },
+]
+
+// 代理侧边数据
+export const useFundSideData = [
+  { label: "资金列表", title: "资金列表", iocn: "", key: "/home/fund/child" },
+  { label: "充值设置", title: "充值设置", iocn: "", key: "/home/fund/recharge" },
+  { label: "提现管理", title: "提现管理", iocn: "", key: "/home/fund/cashmanage", },
+]
+
 
 // 侧边数据
 export const useSideData = () => {

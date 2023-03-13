@@ -4,6 +4,13 @@ const sd = require('silly-datetime');
 const xlsx = require('node-xlsx');
 const fs = require("fs")
 
+// 设置代理比例
+exports.setRevates = async (req, res) => {
+  let { webRebates, mongoID } = req.body;
+  await mongoRootWeb.updateOne({ _id: mongoID }, { webRebates })
+  res.send({ code: 3, value: '成功', data: '' })
+}
+
 // 获取代理数据
 exports.findProxy = async (req, res) => {
   const { val } = req.body;

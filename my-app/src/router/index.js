@@ -8,7 +8,17 @@ const Child = React.lazy(() => import("../views/home/child/Child.jsx"))
 const Root = React.lazy(() => import("../views/home/root/Root.jsx"))
 const Member = React.lazy(() => import("../views/home/member/Member.jsx"))
 const MemberChange = React.lazy(() => import("../views/home/member/MemberChange.jsx"))
+const Fund = React.lazy(() => import("../views/home/fund/Fund.jsx"))
+const FundChild = React.lazy(() => import("../views/home/fund/fundChild/FundChild.jsx"))
+const Recharge = React.lazy(() => import("../views/home/fund/fundChild/Recharge.jsx"))
+const Cashmanage = React.lazy(() => import("../views/home/fund/fundChild/Cashmanage.jsx"))
+
 const Proxy = React.lazy(() => import("../views/home/proxy/Proxy.jsx"))
+const ProxyChild = React.lazy(() => import("../views/home/proxy/proxyChild/ProxyChild.jsx"))
+const Cash = React.lazy(() => import("../views/home/proxy/proxyChild/Cash.jsx"))
+const Invite = React.lazy(() => import("../views/home/proxy/proxyChild/Invite.jsx"))
+const Commission = React.lazy(() => import("../views/home/proxy/proxyChild/Commission.jsx"))
+
 
 
 // 创建路由表
@@ -42,11 +52,45 @@ const router = createBrowserRouter([
         element: <Suspense> <MemberChange /></Suspense>,
       },
       {
+        path: "fund",
+        element: <Suspense> <Fund /></Suspense>,
+        children: [
+          {
+            path: "child",
+            element: <Suspense> <FundChild /></Suspense>,
+          },
+          {
+            path: "recharge",
+            element: <Suspense> <Recharge /></Suspense>,
+          },
+          {
+            path: "cashmanage",
+            element: <Suspense> <Cashmanage /></Suspense>,
+          },
+        ]
+      },
+      {
         path: "proxy",
         element: <Suspense> <Proxy /></Suspense>,
+        children: [
+          {
+            path: "child",
+            element: <Suspense> <ProxyChild /></Suspense>,
+          },
+          {
+            path: "Cash",
+            element: <Suspense> <Cash /></Suspense>,
+          },
+          {
+            path: "invite",
+            element: <Suspense> <Invite /></Suspense>,
+          },
+          {
+            path: "commission",
+            element: <Suspense> <Commission /></Suspense>,
+          }
+        ]
       },
-
-
     ]
   },
 

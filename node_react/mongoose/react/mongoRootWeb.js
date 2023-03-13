@@ -21,6 +21,10 @@ let schema = new mongoose.Schema({
   webInfo: String, // 用户备注
   webProxyName: String, // 代理商
   payPass: String, // 支付密码
+  webRebates: {  // 代理金额信息
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "mongoProxy"
+  },
 }, {
   versionKey: false
 })

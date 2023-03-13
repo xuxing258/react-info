@@ -83,3 +83,6 @@ code {
     background: rgba(0,0,0,0.1);
 }
 
+.ant-table-content{
+	min-height: 550px
+}

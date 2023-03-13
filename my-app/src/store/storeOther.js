@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const useOther = createSlice({
   name: "useOther",
   initialState: {
-    menuSelect: "home/child"
+    menuSelect: ""
   },
   reducers: {
     changeMenuSelect: (state, val) => {

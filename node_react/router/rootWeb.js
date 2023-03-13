@@ -11,7 +11,8 @@ const {
   changeMamberInfo,
   getInstall,
   getData,
-  findProxy
+  findProxy,
+  setRevates
 } = require("../module/handler/hnadlerRootWeb.js")
 
 
@@ -54,6 +55,9 @@ router.get("/data", getData)
 
 // 获取代理账号数据
 router.post("/find", findProxy)
+
+// 获取代理账号数据
+router.post("/revates", setRevates)
 
 module.exports = router
 

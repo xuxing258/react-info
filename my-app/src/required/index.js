@@ -60,4 +60,5 @@ export const changeMamberInfo = (value) => createAxios("post", url + "web/change
 export const getProxyInfo = () => createAxios("get", url + "web/data");
 // Proxy组件获取 搜索代理账号
 export const getSearchProxy = (value) => createAxios("post", url + "web/find", value);
-
+// Proxy组件获取 搜索代理账号
+export const setProxyRebates = (value) => createAxios("post", url + "web/revates", value);

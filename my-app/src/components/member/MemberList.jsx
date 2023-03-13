@@ -122,7 +122,7 @@ export default function MemberList({ memberData }) {
   }
   return (
     <div >
-      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+      <Space direction="vertical" size="middle" style={{ width: "92vw" }}>
         <div>
           <Select defaultValue={select} style={{ width: 120 }} onSelect={(key) => { setSelect(key) }}>
             <Option value={1}>手机号码</Option>
@@ -169,7 +169,8 @@ export default function MemberList({ memberData }) {
             },
           ]}
           dataSource={da}
-          scroll={{ y: "55vh", x: 1800 }}
+          size="middle"
+          scroll={{ x: 1800 }}
           rowKey={(record) => record._id}
           pagination={{ position: ["bottomCenter"], total: len, onChange: pageChange, hideOnSinglePage: true, current }}
         />
