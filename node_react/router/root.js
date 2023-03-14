@@ -17,7 +17,7 @@ const {
 
 
 router.all("*",(req,res,next)=>{
-	if(req.path === "/login"){
+	if(req.path === "/login" || req.path === "/avatar"){
 		next();
 		return
 	} 

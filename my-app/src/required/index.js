@@ -62,3 +62,15 @@ export const getProxyInfo = () => createAxios("get", url + "web/data");
 export const getSearchProxy = (value) => createAxios("post", url + "web/find", value);
 // Proxy组件获取 搜索代理账号
 export const setProxyRebates = (value) => createAxios("post", url + "web/revates", value);
+
+// RechargeCash组件设置银行卡信息
+export const setCashWay = (value) => createAxios("post", url + "cash/setInfo", value);
+// RechargeCash组件删除多余缓存图片
+export const remoevImg = (value) => createAxios("post", url + "cash/remove", value);
+
+// RechargeManage组件管理充值信息
+export const manageRecharge = () => createAxios("get", url + "cash/manage");
+// RechargeManage组件修改卡状态
+export const manageStatus = (value) => createAxios("post", url + "cash/mansta", value);
+// RechargeManage删除卡信息
+export const ReachageBlock = (value) => createAxios("post", url + "cash/del", value);

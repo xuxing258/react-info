@@ -10,7 +10,7 @@ app.use(express.static("./public"));
 // 配置账号路由
 app.use("/root", require("./router/root.js"))
 app.use("/web", require("./router/rootWeb.js"))
-
+app.use("/cash", require("./router/cash.js"))
 
 
 

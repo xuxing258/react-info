@@ -29,7 +29,7 @@ export const useProxtSideData = [
   { label: "佣金分成", title: "佣金分成", iocn: "", key: "/home/proxy/commission", },
 ]
 
-// 代理侧边数据
+// 资金侧边数据
 export const useFundSideData = [
   { label: "资金列表", title: "资金列表", iocn: "", key: "/home/fund/child" },
   { label: "充值设置", title: "充值设置", iocn: "", key: "/home/fund/recharge" },

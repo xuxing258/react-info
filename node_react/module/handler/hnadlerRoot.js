@@ -16,7 +16,6 @@ exports.removeUser = async (req, res) => {
 // 搜索获取数据
 exports.getSearch = async (req, res) => {
   let { value } = req.body
-  // let data = await mongoLogin.find({ loginName: { $regex: value } }, {}).populate("loginRote");
   let data = await mongoLogin.find({ $or: [{ loginName: { $regex: value } }, { logonNick: { $regex: value } }] }, {}).populate("loginRote");
   let len = data.length
   res.send({ value: "获取成功", code: 3, data: data, len })
@@ -103,7 +102,6 @@ exports.setRote = async (req, res) => {
 exports.changeAvatar = async (req, res) => {
   upload(req, res, async function (err) {
     if (err instanceof multer.MulterError) {
-      console.log(err);
       // A Multer error occurred when uploading.
       return res.send({ value: "上传失败", code: 1, data: {} })
     } else if (err) {

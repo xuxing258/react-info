@@ -8,6 +8,7 @@ const Child = React.lazy(() => import("../views/home/child/Child.jsx"))
 const Root = React.lazy(() => import("../views/home/root/Root.jsx"))
 const Member = React.lazy(() => import("../views/home/member/Member.jsx"))
 const MemberChange = React.lazy(() => import("../views/home/member/MemberChange.jsx"))
+
 const Fund = React.lazy(() => import("../views/home/fund/Fund.jsx"))
 const FundChild = React.lazy(() => import("../views/home/fund/fundChild/FundChild.jsx"))
 const Recharge = React.lazy(() => import("../views/home/fund/fundChild/Recharge.jsx"))
@@ -66,7 +67,7 @@ const router = createBrowserRouter([
           {
             path: "cashmanage",
             element: <Suspense> <Cashmanage /></Suspense>,
-          },
+          }
         ]
       },
       {

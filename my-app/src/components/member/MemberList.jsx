@@ -3,55 +3,16 @@ import { Table, Switch, Tag, Input, Space, Select, Button } from 'antd';
 import { getMamber, removeMamber, statusMamber, getPangMamber, getSearch, proxyMamber, getTabel } from "@src/required/index.js"
 import { Link } from "react-router-dom"
 
-
 const { Search } = Input;
-const { Option } = Select
+const { Option } = Select;
 const columns = [
-  {
-    title: '手机号码',
-    dataIndex: 'webPhone',
-    key: 'age',
-    fixed: 'left',
-    width: 100
-  },
-
-  {
-    title: '姓名',
-    dataIndex: 'webName',
-    key: '1',
-    width: 100
-  },
-  {
-    title: '身份证',
-    dataIndex: 'address',
-    key: '2',
-    width: 200
-  },
-  {
-    title: '注册时间',
-    dataIndex: 'webTime',
-    key: '3',
-    width: 120
-
-  },
-  {
-    title: '登录时间',
-    dataIndex: 'address',
-    key: '4',
-    width: 150
-  },
-  {
-    title: '来源',
-    dataIndex: ["webCreate", "loginName"],
-    key: '5',
-    width: 150
-  },
-  {
-    title: "备注",
-    dataIndex: 'address',
-    key: '6',
-    width: 150
-  },
+  { title: '手机号码', dataIndex: 'webPhone', key: 'age', fixed: 'left', width: 100 },
+  { title: '姓名', dataIndex: 'webName', key: '1', width: 100 },
+  { title: '身份证', dataIndex: 'address', key: '2', width: 200 },
+  { title: '注册时间', dataIndex: 'webTime', key: '3', width: 120 },
+  { title: '登录时间', dataIndex: 'address', key: '4', width: 150 },
+  { title: '来源', dataIndex: ["webCreate", "loginName"], key: '5', width: 150 },
+  { title: "备注", dataIndex: 'address', key: '6', width: 150 }
 ];
 
 // 会员列表
